@@ -55,7 +55,7 @@ module.exports = function(grunt) {
     				collapseWhitespace: true
     			},
     			files: {
-    				'index.html': 'src/index.html'
+    				'index.html': 'index.html'
     			}
     		}
     	}
