@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-cssmin");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks('grunt-inline');
+	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
 
 	grunt.initConfig({
@@ -46,8 +47,19 @@ module.exports = function(grunt) {
 	            src: 'src/index.html',
 	            dest: 'index.html'
 	        }
-    }
+    	},
+    	htmlmin: {
+    		dist: {
+    			options: {
+    				removeComments: true,
+    				collapseWhitespace: true
+    			},
+    			files: {
+    				'index.html': 'src/index.html'
+    			}
+    		}
+    	}
 	});
 
-	grunt.registerTask('default', ["cssmin", "uglify","inline"]);
+	grunt.registerTask('default', ["cssmin", "uglify","inline", "htmlmin"]);
 };
