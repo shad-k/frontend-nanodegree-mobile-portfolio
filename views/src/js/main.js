@@ -402,9 +402,10 @@ var pizzaElementGenerator = function(i) {
 var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
-  // changeSliderLabel(size);
+  // Function changeSliderLabel() removed
 
   // Iterates through pizza elements on the page and changes their widths
+  // and sets the slider label
   function changePizzaSizes(size) {
     // Use the faster getElementsByClassName() instead of querySelectorAll
     var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
@@ -480,7 +481,10 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   // var items = document.querySelectorAll('.mover');
+  // Use the faster getElementsByClassName instead of querySelectorAll
   var items = document.getElementsByClassName("mover");
+
+  // Fetching body.scrollTop as it causes Layout which is lethal inside a loop.
   var bodyScrollTop = document.body.scrollTop;
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((bodyScrollTop / 1250) + (i % 5));
@@ -504,6 +508,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  // Reduced the number of moving pizzas created, from 200 to 20
   for (var i = 0; i < 20; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
